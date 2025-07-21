@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SBI Savings Account Opening Form</title>
+</head>
+<body>
+  <h1>SBI Savings Bank Account Opening Form</h1>
+  <form action="/submit_sbi_form" method="post">
+    <!-- Part I – Customer Info (CIF Sheet) -->
+    <fieldset>
+      <legend>Part I: Customer Information (CIF)</legend>
+      
+      <label>Name*:<br><input type="text" name="name" required></label><br><br>
+      <label>Maiden Name:<br><input type="text" name="maiden_name"></label><br><br>
+      <label>Date of Birth*:<br><input type="date" name="dob" required></label><br><br>
+      
+      <label>Gender*:<br>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <input type="radio" name="gender" value="Transgender"> Transgender
+      </label><br><br>
+      
+      <label>Marital Status*:<br>
+        <select name="marital_status" required>
+          <option value="">--Select--</option>
+          <option>Married</option>
+          <option>Unmarried</option>
+          <option>Other</option>
+        </select>
+      </label><br><br>
+      
+      <label>Father's / Spouse’s Name*:<br><input type="text" name="guardian_name" required></label><br><br>
+      <label>Nationality*:<br><input type="text" name="nationality" required></label><br><br>
+      
+      <label>PAN / Form 60*:<br><input type="text" name="pan" required></label><br><br>
+      <label>Annual Income*:<br><input type="number" name="annual_income" required></label><br><br>
+      
+      <label>Occupation Type*:<br>
+        <select name="occupation" required>
+          <option value="">--Select--</option>
+          <option>Service</option>
+          <option>Business</option>
+          <option>Professional</option>
+          <option>Student</option>
+          <option>Housewife</option>
+          <option>Retired</option>
+          <option>Other</option>
+        </select>
+      </label><br><br>
+      
+      <label>Education Qualification:<br>
+        <select name="education">
+          <option value="">--Select--</option>
+          <option>Below SSC</option>
+          <option>SSC</option>
+          <option>HSC</option>
+          <option>Graduate</option>
+          <option>Post‑Graduate</option>
+          <option>Professional</option>
+        </select>
+      </label><br><br>
+      
+      <label>Person with Disability:<br>
+        <input type="radio" name="pwd" value="Yes"> Yes
+        <input type="radio" name="pwd" value="No" checked> No
+      </label><br><br>
+      
+      <label>FATCA (Tax Resident Outside India):<br>
+        <input type="radio" name="fatca" value="Yes"> Yes
+        <input type="radio" name="fatca" value="No" checked> No
+      </label><br><br>
+      
+      <h3>Contact Details</h3>
+      <label>Mobile No*:<br><input type="tel" name="mobile" required></label><br><br>
+      <label>Email ID*:<br><input type="email" name="email" required></label><br><br>
+      <label>Telephone (Res):<br><input type="tel" name="tel_res"></label><br><br>
+    </fieldset>
+
+    <!-- Part II – Account Details -->
+    <fieldset>
+      <legend>Part II: Account Selection & Services</legend>
+      
+      <label>Account Type*:<br>
+        <select name="account_type" required>
+          <option value="">--Select--</option>
+          <option>Savings Bank</option>
+          <option>Small Account (BSBD)</option>
+          <option>Current Account</option>
+        </select>
+      </label><br><br>
+      
+      <h3>Mode of Operation*:</h3>
+      <label><input type="radio" name="mode" value="Self" required> Self</label>
+      <label><input type="radio" name="mode" value="EitherOrSurvivor"> Either / Survivor</label>
+      <label><input type="radio" name="mode" value="FormerOrSurvivor"> Former / Survivor</label>
+      <label><input type="radio" name="mode" value="Joint"> Jointly</label><br><br>
+      
+      <h3>Services Required:</h3>
+      <label><input type="checkbox" name="atm_card"> ATM-cum-Debit Card</label><br>
+      <label><input type="checkbox" name="cheque_book"> Cheque Book</label><br>
+      <label><input type="checkbox" name="sms_alerts"> SMS Alerts</label><br>
+      <label><input type="checkbox" name="phone_banking"> Phone Banking</label><br>
+      <label><input type="checkbox" name="mobile_banking"> Mobile Banking</label><br>
+      <label><input type="checkbox" name="internet_banking"> Internet Banking</label><br>
+      <label><input type="checkbox" name="passbook"> Passbook</label><br>
+      <label><input type="checkbox" name="e_statement"> e-Statement</label><br><br>
+      
+      <h3>Fixed Deposit / Recurring Deposit</h3>
+      <label>FD Amount:<br><input type="number" name="fd_amount"></label><br><br>
+      <label>Period:<br><input type="text" name="fd_period"></label><br><br>
+      
+      <h3>Nomination</h3>
+      <label><input type="checkbox" name="nomination"> I wish to nominate (Form DA-1)</label><br><br>
+    </fieldset>
+
+    <input type="submit" value="Submit Application">
+  </form>
+</body>
+</html>
