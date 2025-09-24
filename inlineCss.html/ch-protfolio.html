@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anwesh sawarkar - Fullstack Developer Portfolio</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #e0e6f0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    a {
+      color: #4fc3f7;
+      text-decoration: none;
+      
+    }
+    a:hover {
+      color: #81d4fa;
+    }
+
+    /* Navigation */
+    nav {
+      background: #121212cc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: saturate(180%) blur(10px);
+    }
+    nav .logo {
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #4fc3f7;
+      letter-spacing: 0.15em;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #4fc3f7;
+      transition: width 0.3s ease;
+    }
+    nav ul li:hover::after,
+    nav ul li.active::after {
+      width: 100%;
+    }
+    nav ul li a {
+      color: #cfd8dc;
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+
+    /* Hero */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      background: linear-gradient(135deg, #0f2027, #203a43);
+    }
+    header h1 {
+      font-size: 4rem;
+      letter-spacing: 0.2em;
+      color: #4fc3f7;
+      margin-bottom: 0.3em;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.3s;
+    }
+    header h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      color: #81d4fa;
+      margin-bottom: 1.2em;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.8s;
+    }
+    header button {
+      padding: 15px 45px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      color: #0f2027;
+      box-shadow: 0 8px 20px rgba(79, 195, 247, 0.7);
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 1.3s;
+    }
+    header button:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 12px 30px rgba(79, 195, 247, 0.9);
+    }
+
+    /* Main container */
+    main {
+      max-width: 1100px;
+      margin: -100px auto 60px;
+      padding: 0 20px 100px;
+      background: rgba(20, 20, 20, 0.85);
+      border-radius: 25px;
+      box-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
+    }
+
+    /* About Section */
+    #about {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      padding: 60px 20px 40px;
+      border-bottom: 2px solid #4fc3f7;
+      flex-wrap: wrap;
+    }
+    #about img {
+      flex: 1 1 320px;
+      max-width: 320px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #4fc3f7;
+      filter: drop-shadow(0 0 15px #4fc3f7);
+      transition: transform 0.5s ease;
+      cursor: pointer;
+    }
+    #about img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    #about .about-text {
+      flex: 2 1 450px;
+      color: #cfd8dc;
+    }
+    #about .about-text h2 {
+      color: #4fc3f7;
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    #about .about-text p {
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Skills Progress Bars */
+    .skill-bar {
+      margin: 15px 0;
+    }
+    .skill-bar label {
+      font-weight: 700;
+      margin-bottom: 5px;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+    .progress {
+      width: 100%;
+      background: #2c5364;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 18px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+    }
+    .progress div {
+      height: 100%;
+      background: #4fc3f7;
+      width: 0;
+      animation-fill-mode: forwards;
+      animation-name: fillProgress;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+    }
+    .progress.html div { animation-delay: 0.3s; width: 95%; }
+    .progress.css div { animation-delay: 0.6s; width: 90%; }
+    .progress.js div { animation-delay: 0.9s; width: 85%; }
+    .progress.react div { animation-delay: 1.2s; width: 75%; }
+    .progress.node div { animation-delay: 1.5s; width: 70%; }
+    .progress.git div { animation-delay: 1.8s; width: 80%; }
+
+    @keyframes fillProgress {
+      from { width: 0; }
+      to { width: var(--width); }
+    }
+
+    /* Skills Section with icons */
+    #skills {
+      padding: 50px 20px;
+      border-bottom: 2px solid #4fc3f7;
+    }
+    #skills h2 {
+      color: #4fc3f7;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(110px,1fr));
+      gap: 35px;
+      justify-items: center;
+    }
+    .skill-item {
+      background: #121212;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px #4fc3f7;
+      width: 110px;
+      text-align: center;
+      cursor: default;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+    .skill-item:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 30px #81d4fa;
+    }
+    .skill-item svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      fill: #4fc3f7;
+    }
+    .skill-item p {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #cfd8dc;
+    }
+
+    /* Projects Section */
+    #projects {
+      padding: 50px 20px;
+      border-bottom: 2px solid #4fc3f7;
+    }
+    #projects h2 {
+      color: #4fc3f7;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 30px;
+    }
+    .project-card {
+      background: #121212;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #203a43;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 45px #4fc3f7;
+      z-index: 10;
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      filter: brightness(0.85);
+      transition: filter 0.3s ease;
+      border-bottom: 2px solid #4fc3f7;
+    }
+    .project-card:hover img {
+      filter: brightness(1);
+    }
+    .project-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-content h3 {
+      color: #81d4fa;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    .project-content p {
+      color: #cfd8dc;
+      font-size: 1rem;
+      flex-grow: 1;
+      margin-bottom: 18px;
+    }
+    .project-tags {
+      margin-bottom: 12px;
+    }
+    .project-tag {
+      display: inline-block;
+      background: #4fc3f7;
+      color: #0f2027;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-right: 8px;
+      user-select: none;
+    }
+    .project-content a {
+      align-self: flex-start;
+      background: #4fc3f7;
+      color: #0f2027;
+      font-weight: 700;
+      padding: 12px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(79, 195, 247, 0.6);
+      transition: background 0.3s ease;
+    }
+    .project-content a:hover {
+      background: #81d4fa;
+    }
+
+    /* Experience Timeline */
+    #experience {
+      padding: 50px 20px;
+      border-bottom: 2px solid #4fc3f7;
+    }
+    #experience h2 {
+      color: #4fc3f7;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    .timeline {
+      position: relative;
+      max-width: 850px;
+      margin: 0 auto;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20px;
+      width: 4px;
+      height: 100%;
+      background: #4fc3f7;
+      border-radius: 5px;
+    }
+    .timeline-item {
+      background: #121212;
+      padding: 20px 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      position: relative;
+      box-shadow: 0 0 20px #4fc3f7;
+      transition: transform 0.3s ease;
+    }
+    .timeline-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px #81d4fa;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -40px;
+      top: 25px;
+      width: 18px;
+      height: 18px;
+      background: #4fc3f7;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #4fc3f7;
+    }
+    .timeline-item h3 {
+      font-size: 1.4rem;
+      color: #81d4fa;
+      margin-bottom: 5px;
+    }
+    .timeline-item span {
+      font-size: 0.9rem;
+      color: #9bb8c5;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 15px;
+      display: inline-block;
+      user-select: none;
+    }
+    .timeline-item p {
+      color: #cfd8dc;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    /* Testimonials */
+    #testimonials {
+      padding: 50px 20px;
+      background: linear-gradient(90deg, #203a43, #2c5364);
+      border-radius: 325px;
+      margin: 0 auto 60px;
+      max-width: 850px;
+      box-shadow: 0 0 45px rgba(31, 121, 204, 0.6);
+    }
+    #testimonials h2 {
+      color: #4fc3f7;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    .testimonial-slider {
+      position: relative;
+      overflow: hidden;
+      height: 180px;
+    }
+    .testimonial {
+      position: absolute;
+      top: 0; left: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: all 0.8s ease;
+      padding: 20px 40px;
+      color: #cfd8dc;
+      font-style: italic;
+      font-size: 1.15rem;
+      user-select: none;
+    }
+    .testimonial.active {
+      left: 0;
+      opacity: 1;
+      position: relative;
+    }
+    .testimonial-author {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: 700;
+      color: #81d4fa;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .testimonial-controls {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .testimonial-controls button {
+      background: transparent;
+      border: 2px solid #4fc3f7;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      color: #4fc3f7;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin: 0 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .testimonial-controls button:hover {
+      background: #4fc3f7;
+      color: #0f2027;
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 60px 20px;
+      max-width: 650px;
+      margin: 0 auto 80px;
+      background: #121212;
+      border-radius: 25px;
+      box-shadow: 0 0 40px #4fc3f7;
+    }
+    #contact h2 {
+      color: #4fc3f7;
+      font-size: 2.8rem;
+      margin-bottom: 35px;
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    form label {
+      font-weight: 600;
+      color: #81d4fa;
+      font-size: 1rem;
+      user-select: none;
+    }
+    form input, form textarea {
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: none;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      background: #203a43;
+      color: #cfd8dc;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+      transition: box-shadow 0.3s ease;
+    }
+    form input:focus, form textarea:focus {
+      outline: none;
+      box-shadow: 0 0 12px #4fc3f7;
+      background: #0f2027;
+    }
+    form textarea {
+      min-height: 120px;
+    }
+    form button {
+      padding: 15px 0;
+      background: #4fc3f7;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 40px;
+      color: #0f2027;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(79, 195, 247, 0.7);
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    form button:hover {
+      background: #81d4fa;
+    }
+    .error-message {
+      color: #ff5252;
+      font-size: 0.9rem;
+      margin-top: -15px;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      background: #121212cc;
+      color: #4fc3f7;
+      font-weight: 500;
+      user-select: none;
+      box-shadow: inset 0 1px 10px rgba(79,195,247,0.5);
+      letter-spacing: 0.1em;
+    }
+    footer a {
+      margin: 0 10px;
+      font-size: 1.6rem;
+      color: #4fc3f7;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #81d4fa;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      #about {
+        flex-direction: column;
+        text-align: center;
+      }
+      #about .about-text {
+        flex: 1 1 100%;
+      }
+      nav ul {
+        gap: 15px;
+      }
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.8rem;
+        letter-spacing: 0.12em;
+      }
+      header h2 {
+        font-size: 1.3rem;
+      }
+      nav {
+        padding: 12px 20px;
+      }
+      main {
+        margin: -80px 15px 60px;
+        border-radius: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo">ANWESH SAWARKAR </div>
+    <ul>
+      <li class="active"><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+     
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <h1>Hey, I'm ANWESH  </h1>
+    <h2>Fullstack Developer | Magial Developer </h2>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Connect</button>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- ABOUT -->
+    <section id="about">
+      <img src="" alt="ANWESH SAWARKAR Portrait" />
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          Passionate Fullstack Developer with 5+ years of experience building dynamic web applications.  
+          I specialize in JavaScript, React, and Node.js, crafting smooth user experiences and scalable backend systems.
+          When not coding, I love exploring UI/UX trends, photography, and hiking in nature.
+        </p>
+
+        <div class="skill-bar">
+          <label>HTML5</label>
+          <div class="progress html"><div></div></div>
+        </div>
+        <div class="skill-bar">
+          <label>CSS3</label>
+          <div class="progress css"><div></div></div>
+        </div>
+        <div class="skill-bar">
+          <label>JavaScript</label>
+          <div class="progress js"><div></div></div>
+        </div>
+        <div class="skill-bar">
+          <label>React</label>
+          <div class="progress react"><div></div></div>
+        </div>
+        <div class="skill-bar">
+          <label>Node.js</label>
+          <div class="progress node"><div></div></div>
+        </div>
+        <div class="skill-bar">
+          <label>Git</label>
+          <div class="progress git"><div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <!-- HTML -->
+        <div class="skill-item" title="HTML5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 520"><path d="M71 460L30 0h392l-41 460-155 43"/></svg>
+          <p>HTML5</p>
+        </div>
+        <!-- CSS -->
+        <div class="skill-item" title="CSS3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 520"><path d="M71 460L30 0h392l-41 460-155 43" fill="#264de4"/></svg>
+          <p>CSS3</p>
+        </div>
+        <!-- JS -->
+        <div class="skill-item" title="JavaScript">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630"><path fill="#f7df1e" d="M423 492c20 36 51 62 100 62 42 0 69-21 69-51 0-36-28-49-75-70l-26-11c-24-10-39-23-39-50 0-26 20-46 51-46 22 0 38 7 49 27l27-16c-16-30-39-41-77-41-39 0-66 23-66 56 0 38 27 51 71 73l26 11c26 11 42 25 42 53 0 31-24 48-57 48-32 0-53-15-63-35l-27 16zm-153-6c7 12 14 23 31 23 15 0 25-6 25-29V323h50v166c0 51-30 74-74 74-40 0-64-21-76-46z"/></svg>
+          <p>JavaScript</p>
+        </div>
+        <!-- React -->
+        <div class="skill-item" title="React.js">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#61dafb" d="M256 128c32 0 60 22 64 52-7 3-19-4-27-7-7-5-15-6-25-6-10 0-19 1-26 6-9 3-20 11-27 8 2-29 31-53 61-53zm-78 111c5-5 13-10 21-11 16-3 33 2 41 15 7 14 7 36 0 50-11 20-41 24-56 5-10-13-12-29-6-49z"/></svg>
+          <p>React.js</p>
+        </div>
+        <!-- Node -->
+        <div class="skill-item" title="Node.js">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 288"><path fill="#8cc84b" d="M128 0L19 74v140l109 74 109-74V74z"/></svg>
+          <p>Node.js</p>
+        </div>
+        <!-- Git -->
+        <div class="skill-item" title="Git">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97 97"><path fill="#f05133" d="M45 6L12 39l11 11 22-22-11-11zM77 51v14L43 92 6 55V41L40 6h14l23 23z"/></svg>
+          <p>Git</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=800&q=70" alt="Project Alpha" />
+          <div class="project-content">
+            <h3>Project Alpha</h3>
+            <p>A responsive e-commerce platform with live chat, custom payment gateway integration, and advanced search filters.</p>
+            <div class="project-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">MongoDB</span>
+            </div>
+            <a href="https://github.com/janedoe/project-alpha" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=70" alt="Portfolio Website" />
+          <div class="project-content">
+            <h3>Personal Portfolio</h3>
+            <p>Clean, animated portfolio website built with React and CSS Grid to showcase projects and blog posts.</p>
+            <div class="project-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">CSS Grid</span>
+            </div>
+            <a href="https://github.com/janedoe/portfolio" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1502880195258-c7b9fda74ad6?auto=format&fit=crop&w=800&q=70" alt="Task Manager" />
+          <div class="project-content">
+            <h3>Task Manager App</h3>
+            <p>A productivity web app with user authentication, drag & drop task organization, and push notifications.</p>
+            <div class="project-tags">
+              <span class="project-tag">Vue</span>
+              <span class="project-tag">Firebase</span>
+            </div>
+            <a href="https://github.com/janedoe/task-manager" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2>Work Experience</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <h3>Senior Developer - Tech Solutions Inc.</h3>
+          <span>2021 - Present</span>
+          <p>Leading the frontend team building scalable React applications and collaborating on API design with backend engineers.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Fullstack Developer - WebWorks</h3>
+          <span>2018 - 2021</span>
+          <p>Developed fullstack solutions using Node.js, Express, and React; enhanced user experience and optimized performance.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Junior Developer - CodeCrafters</h3>
+          <span>2016 - 2018</span>
+          <p>Assisted in building internal tools and client websites; gained solid experience in HTML, CSS, and JavaScript.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <h2>What Clients Say</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial active">
+          <p>"Jane delivered our project ahead of schedule with fantastic quality. Her expertise and communication were top-notch."</p>
+          <div class="testimonial-author">- Michael S., CEO of StartupX</div>
+        </div>
+        <div class="testimonial">
+          <p>"She is a rare talent who combines creativity with excellent coding skills. We highly recommend her services."</p>
+          <div class="testimonial-author">- Sarah L., Product Manager at Creativa</div>
+        </div>
+        <div class="testimonial">
+          <p>"Jane’s attention to detail and user-focused design made our app intuitive and enjoyable for users."</p>
+          <div class="testimonial-author">- David K., CTO at DevSolutions</div>
+        </div>
+      </div>
+      <div class="testimonial-controls">
+        <button id="prevTestimonial">&#8592;</button>
+        <button id="nextTestimonial">&#8594;</button>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <form id="contactForm" novalidate>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your full name" required />
+        <div class="error-message" id="errorName"></div>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="example@mail.com" required />
+        <div class="error-message" id="errorEmail"></div>
+
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Write your message here..." required></textarea>
+        <div class="error-message" id="errorMessage"></div>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Jane Doe. All rights reserved.
+    <div>
+      <a href="https://github.com/janedoe" target="_blank" aria-label="GitHub">&qscr;#x1F5C3;</a>
+      <a href="https://linkedin.com/in/janedoe" target="_blank" aria-label="LinkedIn">&#x1F465;</a>
+      <a href="https://twitter.com/janedoe" target="_blank" aria-label="Twitter">&#x1F426;</a>
+    </div>
+  </footer>
+
+<script>
+  // Testimonial Slider Logic
+  const testimonials = document.querySelectorAll('.testimonial');
+  let currentIndex = 0;
+
+  function showTestimonial(index) {
+    testimonials.forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
+  }
+
+  document.getElementById('prevTestimonial').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    showTestimonial(currentIndex);
+  });
+
+  document.getElementById('nextTestimonial').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    showTestimonial(currentIndex);
+  });
+
+  // Contact Form Validation
+  const form = document.getElementById('contactForm');
+  const errorName = document.getElementById('errorName');
+  const errorEmail = document.getElementById('errorEmail');
+  const errorMessage = document.getElementById('errorMessage');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    if (!form.name.value.trim()) {
+      errorName.textContent = 'Name is required';
+      valid = false;
+    } else {
+      errorName.textContent = '';
+    }
+
+    if (!form.email.value.trim() || !/\S+@\S+\.\S+/.test(form.email.value)) {
+      errorEmail.textContent = 'Valid email is required';
+      valid = false;
+    } else {
+      errorEmail.textContent = '';
+    }
+
+    if (!form.message.value.trim()) {
+      errorMessage.textContent = 'Message cannot be empty';
+      valid = false;
+    } else {
+      errorMessage.textContent = '';
+    }
+
+    if (valid) {
+      alert('Message sent successfully!');
+      form.reset();
+    }
+  });
+</script>
+
+</body>
+</html>
