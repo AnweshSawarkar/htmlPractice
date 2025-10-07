@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name — Portfolio</title>
+  <style>
+    /* Variables */
+:root {
+  --color-primary: #007BFF;
+  --color-secondary: #FFDD00;
+  --color-light-bg: #FAFAFA;
+  --color-dark-bg: #111;
+  --color-light-text: #222;
+  --color-dark-text: #EEE;
+  --radius: 8px;
+  --spacing: 1.5rem;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+}
+
+/* Theme Light / Dark */
+[data-theme="light"] {
+  --bg: var(--color-light-bg);
+  --text: var(--color-light-text);
+}
+
+[data-theme="dark"] {
+  --bg: var(--color-dark-bg);
+  --text: var(--color-dark-text);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--color-primary);
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Header / Navbar */
+.site-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: var(--bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.navbar {
+  max-width: var(--max-width);
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing) 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  color: var(--text);
+  transition: color var(--transition);
+}
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+/* Toggle menu (mobile) */
+.nav-toggle {
+  display: none;
+}
+.nav-toggle-label {
+  display: none;
+}
+
+/* Dark mode toggle */
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mode-toggle input {
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.hero .hero-overlay {
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: linear-gradient( rgba(0,0,0,0.3), rgba(0,0,0,0.3) );
+  z-index: 1;
+}
+.hero .hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: white;
+  margin-bottom: var(--spacing);
+}
+.hero h1 span {
+  color: var(--color-secondary);
+}
+.hero .subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: #ddd;
+  margin-bottom: var(--spacing);
+}
+/* Optionally a typing effect: CSS hack or minimal JS */
+
+.btn {
+  background: var(--color-secondary);
+  color: #000;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.btn:hover {
+  background: #e6c200;
+}
+
+/* Sections */
+section {
+  padding: 6rem 2rem;
+}
+.container {
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+/* About */
+.about .container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.about-image img {
+  width: 320px;
+  border-radius: var(--radius);
+}
+.about-text {
+  flex: 1;
+}
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing);
+}
+.about-text p {
+  margin-bottom: var(--spacing);
+}
+.about-text .skills-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.about-text .skills-list li {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+}
+
+/* Services */
+.services .service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 2rem;
+}
+.service-card {
+  background: var(--bg);
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Projects */
+.project-filters {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.project-filters label {
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text);
+}
+.project-filters input[type="radio"] {
+  display: none;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 2rem;
+}
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.project-card img {
+  width: 100%;
+  display: block;
+  transition: transform var(--transition);
+}
+.project-card:hover img {
+  transform: scale(1.1);
+}
+.overlay {
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  transition: opacity var(--transition);
+}
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Testimonials */
+.testimonials .testimonial-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 2rem;
+}
+.testimonial-card {
+  background: var(--bg);
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: var(--radius);
+  font-style: italic;
+  color: var(--text);
+}
+
+/* Contact */
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}
+.contact-form input, .contact-form textarea {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0;
+}
+.back-to-top {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  display: none; /* you can show via CSS when scrolled or with JS */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-image img {
+    width: 70%;
+  }
+  .navbar {
+    padding: var(--spacing) 1rem;
+  }
+  .nav-links {
+    display: none; /* or use toggle menu hack */
+  }
+  .nav-toggle-label {
+    display: block;
+    cursor: pointer;
+  }
+  /* etc for mobile menu */
+}
+
+
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- Optional Preloader (CSS Animated) -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="#home" class="logo">YourName</a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mode-toggle">
+        <input type="checkbox" id="mode-switch">
+        <label for="mode-switch">Dark Mode</label>
+      </div>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Your Name</span></h1>
+      <p class="subtitle">I create <span class="typing">web experiences</span></p>
+      <a href="#projects" class="btn">See My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-image">
+        <img src="your-photo.jpg" alt="Your Name">
+      </div>
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>Write something compelling about yourself: your mission, your strengths, your approach, why you love building web stuff, etc.</p>
+        <ul class="skills-list">
+          <li>HTML5 & CSS3</li>
+          <li>Responsive Design</li>
+          <li>UX / UI Principles</li>
+          <li>Design Tools (Figma, Photoshop etc.)</li>
+          <li>Performance Optimization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2>What I Do</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <h3>Web Development</h3>
+          <p>Building responsive, fast and accessible websites.</p>
+        </div>
+        <div class="service-card">
+          <h3>UI / UX Design</h3>
+          <p>Designing intuitive interfaces and user journeys.</p>
+        </div>
+        <div class="service-card">
+          <h3>Performance & SEO</h3>
+          <p>Ensure your site loads fast & ranks well.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-filters">
+        <label><input type="radio" name="filter" value="all" checked> All</label>
+        <label><input type="radio" name="filter" value="web"> Web</label>
+        <label><input type="radio" name="filter" value="design"> Design</label>
+        <label><input type="radio" name="filter" value="ux"> UX</label>
+      </div>
+      <div class="project-grid">
+        <div class="project-card" data-category="web">
+          <img src="proj1.jpg" alt="Project One">
+          <div class="overlay">
+            <h3>Project One</h3>
+            <p>Web Design + Development</p>
+            <a href="#" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+        <div class="project-card" data-category="design">
+          <img src="proj2.jpg" alt="Project Two">
+          <div class="overlay">
+            <h3>Project Two</h3>
+            <p>Graphic / UI Design</p>
+            <a href="#" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+        <!-- more cards -->
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2>Testimonials</h2>
+      <div class="testimonial-cards">
+        <div class="testimonial-card">
+          <p>“Working with YourName was a fantastic experience. The website looks great and works smoothly across all devices.”</p>
+          <h4>Client A</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>“Highly professional, creative, delivered on time and exceeded expectations.”</p>
+          <h4>Client B</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <a href="#home" class="back-to-top">↑</a>
+    <div class="footer-content">
+      <p>© 2025 Your Name. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
