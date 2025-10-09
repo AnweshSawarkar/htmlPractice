@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ludo Board</title>
+  <style>
+    body {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 2px;
+  width: 600px;
+  height: 600px;
+  border: 5px solid #333;
+}
+
+.cell {
+  position: relative;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.red-home    { background: #e74c3c; }
+.green-home  { background: #27ae60; }
+.blue-home   { background: #3498db; }
+.yellow-home { background: #f1c40f; }
+
+.tokens {
+  display: grid;
+  grid-template-columns: repeat(2, 40px);
+  grid-template-rows: repeat(2, 40px);
+  gap: 10px;
+}
+
+.tokens div {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.red div    { background: #c0392b; }
+.green div  { background: #1e8449; }
+.blue div   { background: #2980b9; }
+.yellow div { background: #f39c12; }
+
+.center {
+  background: white;
+  position: relative;
+}
+
+.center-triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid #e74c3c;
+  border-top: 100px solid transparent;
+  border-bottom: 100px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.center-one {
+  width: 0;
+  height: 0;
+  border-left: 100px solid #e74c3c;
+  border-top: 100px solid transparent;
+  border-bottom: 100px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.center-horizontal, .center-vertical {
+  background: #fff;
+}
+
+  </style>
+</head>
+<body>
+  <div class="board">
+    <!-- Top Row -->
+    <div class="cell red-home">
+      <div class="tokens red">
+        <div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+    <div class="cell center-vertical"></div>
+    <div class="cell green-home">
+      <div class="tokens green">
+        <div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+
+    <!-- Middle Row -->
+    <div class="cell center-horizontal"></div>
+    <div class="cell center">
+      <div class="center-triangle"></div>
+    </div>
+    <div class="cell center-horizontal"></div>
+
+    <!-- Bottom Row -->
+    <div class="cell blue-home">
+      <div class="tokens blue">
+        <div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+    <div class="cell center-vertical"></div>
+    <div class="cell yellow-home">
+      <div class="tokens yellow">
+        <div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
