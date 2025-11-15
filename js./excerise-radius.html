@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>area of circle </title>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            margin: 0%;
+            padding: 0%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .container{
+            width: 40%;
+            height: 50%;
+            box-shadow: 5px 5px 50px 2px gray ;
+            border-radius: 20px;
+            gap: 100px;
+             display: flex;
+             flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        input{
+            width: 90%;
+            height: 10%;
+            font-size: 20px;
+
+        }
+        button{
+            width: 90%;
+            height: 15%;
+        }
+        .circle{
+            width: 30%;
+            height: 20%;
+            border-radius: 20px;
+            background-color: rgb(10, 170, 223);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <input type="text" id="input" placeholder="Enter a radius of circle">
+    <button onclick="area()">Find area</button>
+    <p id="result">Result</p>
+    </div>
+    <script>
+        function area() {
+            let radius = document.getElementById("input").value;
+            const pie = 3.142 
+            let area = 3.142 * number(radius) * number(radius)
+            document.getElementById("result").innerHTML = area;
+        }
+    </script>
+</body>
+</html>
