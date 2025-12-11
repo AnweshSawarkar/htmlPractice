@@ -6,21 +6,19 @@
 </head>
 <body>
     <script>
-        const age = 12
-        const height = 140
+        const age = 12 ;
+        const height = 140 ;
+
+        let inputAge = Number(prompt("Enter Your Age"))
+        let inputHeight = Number (prompt("Enter Your Height in cm :"))
         
-        let userAgeInput =  prompt()
-        // let userHeightInput =  Number()
 
-        let result  = (age ==  userAgeInput)
-
-
-        if(((result = (age = userAgeInput)))){
-           alert("Right")
-        }
-        else{
-            alert("Wrong")
-        }
+       if((inputAge >= age) && (inputHeight >= height)){
+        alert("Right")
+       }
+       else{
+        alert("Wrong")
+       }
     </script>
 </body>
 </html>
