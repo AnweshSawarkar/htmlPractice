@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Cart Discount Checker</title>
+</head>
+<body>
+    <h1>Enter Card Total Amount</h1>
+    <input type="Number" id="total-Cart">
+    <br>
+    <br>
+
+    <input type="Checkbox" id="checkbox">
+    <label for="">Is a member</label> 
+    <br>
+    <br>
+    <button onclick="check()">sumbit</button>
+
+    <script>
+        function check(){
+            
+            let value = document.getElementById("checkbox").checked;
+             let totalCart = document.getElementById("total-Cart").value;
+          if(totalCart >= 100 && value){
+            alert("discount applied")
+          }
+          else{
+            alert("discount not applied")
+          }
+          
+        }
+    </script>
+</body>
+</html>
