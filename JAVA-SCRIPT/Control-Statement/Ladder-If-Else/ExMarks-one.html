@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <title>Document</title>
+</head>
+<body>
+    <input type="radio" name="class" value="class" id="10-class"><label>10 class</label> <br>
+    <input type="radio" name="class" value="class" id="12-class"><label>12 class</label>
+    <button onclick="getValue()">Submit</button>
+    <script>
+        function getValue(){
+            grade = " "
+            if (document.getElementById("10-class").checked ){
+                  grade = "10-class"
+            }
+            else if (document.getElementById("12-class").checked){
+                grade = "12-class"
+            }
+            else{
+                grade = " No Option"
+            }
+            alert (grade)
+              
+        }
+        function grade(){
+         let marks = prompt("Enter Your Marks")
+        if(marks >= 90){
+            alert("A+")
+        }
+        else if (marks >= 75){
+           alert("B+")
+        }
+        else if (marks >= 50){
+           alert("C+")
+        }
+        else if (marks >= 35){
+           alert("D+")
+        }
+        else{
+            alert("Fail")
+        }
+    }
+    </script>
+</body>
+</html>

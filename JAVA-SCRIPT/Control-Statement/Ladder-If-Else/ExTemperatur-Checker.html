@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <style>
+        .container{
+           width: 50vw;
+           height: 50vh;
+           background-color: rgb(146, 180, 112);
+           border-radius: 20px;
+           
+        }
+        button{
+            width: 200px;
+           
+        }
+        .one{
+            width: 250px;
+            height: 50px;
+            background-color: mediumspringgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Temperature Range Checker</h1>
+        <h4>Enter a Temperature</h4>
+        <input type="text" id="input">
+        <button onclick="temperature()">Check Temperature </button>
+        <div class="one" id="display"></div>
+    </div>
+    <script>
+        function temperature(){
+          let tem= document.getElementById("input").value
+
+let display = ""
+
+if(tem >= 40){
+    display = "Very Hot"
+}
+else if (tem >= 30){
+      display = "Show hot"
+}
+else if (tem >= 20 ){
+    display = "Show Warm"
+}
+else if (tem >= 10){
+    display = "Show Cool"
+}
+else{
+    display = "Frezzing"
+}
+
+document.getElementById("input").value = ""
+document.getElementById("display").innerHTML = display
+        }
+    </script>
+</body>
+</html>

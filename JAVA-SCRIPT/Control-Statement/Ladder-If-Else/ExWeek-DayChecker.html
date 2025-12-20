@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="Display">
+        <input type="text" name="" id="input">
+    <button onclick="showDay()" ></button>
+    
+</div>
+    <script>
+           function showDay(){
+            let number= document.getElementById("input").innerHTML
+
+            let day = ""
+            
+            if(number == 0){
+                day = "Sunday"
+            }
+            else if (nunber == 1){
+                  dya = "Monday"
+            }
+            else if (number == 2 ){
+                day = "Tuesday"
+            }
+            else if (number == 3){
+                day = "Wednesday"
+            }
+            else if (number == 4){
+                day = "Thursday"
+            }
+            else if (number == 5){
+                day = "Friday"
+            }
+            else if (number == 6){
+                day = "Saturday"
+            }
+            else {
+                day = "Invalid Day"
+            }
+
+            document.getElementById("Display").innerHTML = Day
+           }
+    </script>
+</body>
+</html>
