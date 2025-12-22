@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Bill Calculator</title>
+</head>
+<body>
+    <script>
+      
+    
+        let units = prompt("Enter Your Units")
+        total = 0
+        result = 0
+
+        if(units <= 50){
+            result = units*7
+        }
+        else if (units <= 150){
+            result = units*8
+        }
+        else if (units <= 250){
+            result = units*12
+        }
+        else{
+           result = units*15
+        }
+
+       bill = 0.20 * result
+
+        total = result + bill
+                                 
+        
+        // alert(total)
+    </script>
+</body>
+</html>
