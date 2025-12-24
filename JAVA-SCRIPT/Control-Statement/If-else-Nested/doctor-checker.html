@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <input type="radio"   id="input-doctor">
+     <input type="radio" id="input-doctor2">
+      <butto onclick="doctor()">checked</button> -->
+
+
+    <label for="">Doctor is present</label>
+    <br>
+    <input type="radio" id="input-doctor" name="check" value="in"><label>Yes</label>
+    <input type="radio" id="input-doctor2" name="check" value="out"><label>No</label>
+    <br>
+
+    <label for="">Patient Registered</label>
+    <br>
+    <input type="radio" id="input-doctor" name="register" value="in"><label>Yes</label>
+    <input type="radio" id="input-doctor2" name="register" value="out"><label>No</label>
+
+    <br>
+
+    <label for="">payment is pending</label>
+    <br>
+    <input type="radio" id="input-doctor" name="register" value="in"><label>Yes</label>
+    <input type="radio" id="input-doctor2" name="register" value="out"><label>No</label>
+
+
+    <br>
+     <button>Sumbit</button>
+      
+
+
+    <script>
+     
+     function doctor(){
+        let doctor = ""
+        if(document.getElementById("inout-doctor").checked){
+         doctor = "in"
+        }
+
+        if(document.getElementById("inout-doctor2").checked){
+         doctor = "out"
+        }
+     }
+    </script>
+</body>
+
+</html>
