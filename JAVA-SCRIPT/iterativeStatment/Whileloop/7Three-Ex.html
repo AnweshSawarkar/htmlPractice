@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="Display"></p>
+</body>
+<script>
+        let i = 1
+        let n = prompt("Enter Your Name")
+
+        while(i <= n){
+            let j = 1;
+            let row = ' ';
+
+
+
+            while(j <= i){
+                row += 1 + " "
+                 j++
+            }
+            console.log(row)
+              document.getElementById("Display").innerHTML += row + "<br/>"
+            i++
+        }
+       
+
+      
+    </script>
+</html>
