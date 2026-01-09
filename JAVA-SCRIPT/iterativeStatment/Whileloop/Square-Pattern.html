@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <pre id="Display"></pre>
+    <script>
+        let i = 1
+        let n = 7
+        while(i<= n){
+            let row = ""
+            let j = 1
+            while(j <= n){
+            if( i ==1. || i == n || j == 1 || j == n) {
+               row += "* "
+            }
+            else{
+                row += "  "
+
+            }
+            j++;
+
+            }
+            console.log(row)
+         
+
+         document.getElementById("Display").innerHTML += row + "<br/>"
+               i++;
+        }
+    </script>
+</body>
+</html>
